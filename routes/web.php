@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
 
 Auth::routes();
 
+//backend Routes
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'admin'], function () {
@@ -29,14 +30,28 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+	Route::resource('createmenu','Backend\CreateMenuController');
+	Route::resource('/itemcategory','Backend\ItemCategoryController');
+	Route::get('/item','Backend\CreateMenuController@item')->name('menu.item');
+	Route::post('/{id}/orderstatus','Backend\OrderController@changestatus')->name('order.status');
+	Route::get('/receivedorders','Backend\OrderController@receivedOrders')->name('order.received');
+	Route::get('/acceptedorders','Backend\OrderController@acceptedOrders')->name('order.accepted');
+	Route::get('/rejecteddorders','Backend\OrderController@rejectedOrders')->name('order.rejected');
+
+
 });
 
-Route::get('/menu',function(){
-    return view('frontend.menu.fullmenu');
-})->name('menu.view');
-Route::get('/cart','frontend\CartController@index')->name('cart.view');
 
-Route::post('/cart','frontend\CartController@store')->name('cart.store');
-Route::get('/empty',function(){
-	return Cart::session(4)->remove(1);
-});
+//frontend routes
+Route::get('/menu','Frontend\MenuController@index')->name('menu.view');
+Route::get('/menu/{category}','Frontend\MenuController@categoryView')->name('menu.category.view');
+Route::get('/cart','Frontend\CartController@index')->name('cart.view');
+Route::post('/cart','Frontend\CartController@store')->name('cart.store');
+Route::get('/cart/{id}/remove','Frontend\CartController@destroy')->name('cart.destroy');
+Route::get('search','Frontend\MenuController@search')->name('search');
+Route::resource('/{service}/checkout','Frontend\CheckoutController');
+
+
+
+// Route::get('/facebook/login/redirect','Auth\SocialAuthController@redirect');
+// Route::get('/facebook/login/callback','Auth\SocialAuthController@callback');

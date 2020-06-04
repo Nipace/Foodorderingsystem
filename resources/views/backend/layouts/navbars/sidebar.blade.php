@@ -121,20 +121,41 @@
                     </div>
                 </li>
               
-             
-                    @can('View Menu')
-
+    
+                @can('View Menu')
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/createmenu">
                     <i class="fas fa-folder-plus text-info"></i> {{ __('Menu') }}
                     </a>
                 </li>
-                    @endcan
+                @endcan
+                @can('View Order')
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
+                    <a class="nav-link" href="#navbar-examples1" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples1">
+                        <i class="far fa-user" style="color: #f4645f;"></i>
+                        <span class="nav-link-text">{{ __('Order') }}</span>
                     </a>
+                    <div class="collapse hide" id="navbar-examples1">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('order.received') }}">
+                                <i class="far fa-user-circle text-primary"></i> {{ __('Received Orders') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('order.accepted') }}">
+                                <i class="fas fa-user-plus text-cyan"></i> {{ __('Accepted Orders') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('order.rejected')}}">
+                                <i class="fas fa-user-tag text-pink"></i> {{ __('Rejected Orders') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
+                @endcan
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}

@@ -1,7 +1,7 @@
 @extends('auth.layouts.app', ['class' => 'bg-default'])
 
 @section('content')
-    @include('layouts.headers.guest')
+    @include('backend.layouts.headers.guest')
 
     <div class="container mt--8 pb-5">
         <!-- Table -->
@@ -59,7 +59,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="{{ __('Phone') }}" type="email" name="email" value="{{ old('email') }}" required>
+                                    <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="{{ __('Phone') }}" type="text" name="phone" value="{{ old('phone') }}" required>
                                 </div>
                                 @if ($errors->has('phone'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -72,7 +72,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="{{ __('Address') }}" type="email" name="email" value="{{ old('email') }}" required>
+                                    <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="{{ __('Address') }}" type="text" name="address" value="{{ old('address') }}" required>
                                 </div>
                                 @if ($errors->has('address'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">

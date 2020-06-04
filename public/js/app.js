@@ -49703,6 +49703,17 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 var app = new Vue({
   el: '#app'
+}); // add to quantity
+
+$('.add').click(function () {
+  if ($(this).prev().val() < 100) {
+    $(this).prev().val(+$(this).prev().val() + 1);
+  }
+});
+$('.sub').click(function () {
+  if ($(this).next().val() > 1) {
+    if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
+  }
 });
 
 /***/ }),

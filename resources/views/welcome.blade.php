@@ -39,7 +39,7 @@
             </li>
            
             <li class="nav-item  font-weight-bold  mr-2 ">
-                <a class="nav-link text-success" href="#">About Us</a>
+                <a class="nav-link text-success" href="#about-us">About Us</a>
               </li>
               <li class="nav-item  font-weight-bold  mr-2">
                 <a class="nav-link text-success" href="#">Contact Us</a>
@@ -68,7 +68,7 @@
       </header>
      
       <!-- Page Content -->
-      <section class="py-5">
+      <section class="py-5" id="about-us">
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-5 pl-5 ml-5 text-right">

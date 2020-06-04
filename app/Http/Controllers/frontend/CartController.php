@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Darryldecode\Cart\CartCondition;
 use Auth;
-
+use Cart;
+use App\Model\ItemCategory;
 
 class CartController extends Controller
 {
@@ -17,7 +18,9 @@ class CartController extends Controller
      */
     public function index()
     {
-            return view('frontend.cart.index');
+        $navCategory = ItemCategory::where('is_navitem','1')->get();
+        $otherCategory = ItemCategory::where('is_navitem','0')->get();
+        return view('frontend.cart.index',compact('navCategory','otherCategory'));
        
        
     }
@@ -42,10 +45,11 @@ class CartController extends Controller
     {
         $userId = auth()->user()->id;
         \Cart::session($userId)->add(array(
-            'id' => 3,
-            'name' =>'Chicken Momo',
-            'price' =>200,
-            'quantity' => 2,
+            'id' => $request->id,
+            'name' =>$request->item_name,
+            'price' =>$request->item_price,
+            'quantity' => $request->quantity,
+            'image'=>$request->image,
             'attributes' => array(),
         ));
           
@@ -53,7 +57,7 @@ class CartController extends Controller
           
      
         // \Cart::add(1,'Steamed Buffo Momo',200,2);
-        return redirect(route('cart.view'))->withStatus(__('Item Added successfully'));
+        return redirect()->back()->withStatus(__('Item Added successfully'));
         
     }
 
@@ -99,6 +103,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $userId = auth()->user()->id; // or any string represents user identifier
+        Cart::session($userId)->remove($id);
+        return redirect()->back()->withStatus('Item Removed From Cart');
     }
 }

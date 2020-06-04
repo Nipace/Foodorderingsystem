@@ -2,9 +2,9 @@
 
 @section('content')
     @include('backend.layouts.headers.cards')
-    
+
     <div class="container-fluid mt--7">
-   
+  
         <div class="row justify-content-center">
             <div class="col-xl-10 mb-5 mb-xl-0">
                 <div class="card shadow">
@@ -17,6 +17,26 @@
                                 <a href="#!" class="btn btn-sm btn-primary">See all</a>
                             </div>
                         </div>
+                        <div class="row pt-2">
+                            <div class="col-md-6">
+                                @if (session('status'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('status') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+                                @if (session('error-message'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ session('error-message') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
@@ -26,82 +46,39 @@
                                     <th scope="col">Order ID</th>
                                     <th scope="col">Orderd Item</th>
                                     <th scope="col">Orderd By</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">Contact Number</th>
-
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Operations</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($order as $orders)   
                                 <tr>
                                     <th scope="row">
-                                        /argon/
+                                        {{$orders->id}}
                                     </th>
                                     <td>
-                                        4,569
+                                        {{$orders->item_name}}
+                                    </td>
+                              
+                                    <td>
+                                        {{$orders->user->name}}
+                                    </td>
+                                 
+                                    <td>
+                                        {{$orders->service_type}} 
                                     </td>
                                     <td>
-                                        340
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                                        <form action="{{route('order.status',$orders->id)}}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-sm btn-success" name="action" type="submit" value="accept">Accept</button>
+                                            <button class ="btn btn-sm btn-danger"name="action" type="submit" value="reject">Reject</button>
+                                            <button class="btn btn-sm btn-primary">Details</button>
+                                        </form>
+                                      
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/index.html
-                                    </th>
-                                    <td>
-                                        3,985
-                                    </td>
-                                    <td>
-                                        319
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/charts.html
-                                    </th>
-                                    <td>
-                                        3,513
-                                    </td>
-                                    <td>
-                                        294
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/tables.html
-                                    </th>
-                                    <td>
-                                        2,050
-                                    </td>
-                                    <td>
-                                        147
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        /argon/profile.html
-                                    </th>
-                                    <td>
-                                        1,795
-                                    </td>
-                                    <td>
-                                        190
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
+                               
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
