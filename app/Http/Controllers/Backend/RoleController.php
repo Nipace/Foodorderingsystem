@@ -87,10 +87,11 @@ class RoleController extends Controller
        $role = Role::findById($id);
        $role->name = $request->name;
        $role->save();
-       if($request->has('permission'))
-       {
+      
         $permissionAll = Permission::all();
         $role->revokePermissionTo($permissionAll);
+        if($request->has('permission'))
+        {
         foreach($request->permission as $permission){
             $newPermission = $permission;
             $role->givePermissionTo($newPermission);

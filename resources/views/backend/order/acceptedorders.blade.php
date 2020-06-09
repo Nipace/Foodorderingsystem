@@ -61,7 +61,7 @@
                                     </td>
                               
                                     <td>
-                                        {{$orders->user}}
+                                        {{$orders->user->name}}
                                     </td>
                                  
                                     <td>

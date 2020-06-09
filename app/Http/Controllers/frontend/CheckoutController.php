@@ -22,9 +22,16 @@ class CheckoutController extends Controller
         // $dt = new Carbon();
         // $dt->timezone('Asia/Kathmandu');
         // echo $dt->hour;
+        $content = Cart::session(auth()->user()->id)->getContent();
         $navCategory = ItemCategory::where('is_navitem','1')->get();
         $otherCategory = ItemCategory::where('is_navitem','0')->get();
+        if(Cart::session(auth()->user()->id)->isEmpty())
+        {
+            return "No Access";
+        } 
         return view('frontend.checkout.index',compact('navCategory','otherCategory','service'));
+
+      
     }
 
     /**

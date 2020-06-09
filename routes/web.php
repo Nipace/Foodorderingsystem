@@ -55,3 +55,7 @@ Route::resource('/{service}/checkout','Frontend\CheckoutController');
 
 // Route::get('/facebook/login/redirect','Auth\SocialAuthController@redirect');
 // Route::get('/facebook/login/callback','Auth\SocialAuthController@callback');
+
+
+
+
