@@ -45,7 +45,12 @@
                                         <label class="form-control-label" for="input-category">{{ __('Food Category') }}</label>
                                         <select  name="category" id="input-category" class="form-control form-control-alternative{{ $errors->has('category') ? ' is-invalid' : '' }}" placeholder="{{ __('Food Category') }}" value="" required>
                                             @foreach($category as $itemCategory)
-                                                <option>{{$itemCategory->category_name}}</option>
+                                                <option value="{{$itemCategory->category_name}}"
+                                                 <?php
+                                                    if($item->category==$itemCategory->category_name)
+                                                    echo "selected"
+                                                 ?>
+                                                >{{$itemCategory->category_name}}</option>
                                             @endforeach
                                         </select>
 

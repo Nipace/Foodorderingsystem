@@ -72,9 +72,8 @@
                                             @csrf
                                             <button class="btn btn-sm btn-success" name="action" type="submit" value="accept">Accept</button>
                                             <button class ="btn btn-sm btn-danger"name="action" type="submit" value="reject">Reject</button>
-                                            <button class="btn btn-sm btn-primary">Details</button>
+                                            <a href="{{route('order.details',[$orders->user->id,$orders->id])}}" class="btn btn-sm btn-primary">Details</a> 
                                         </form>
-                                      
                                     </td>
                                 </tr>
                                

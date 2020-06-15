@@ -37,6 +37,8 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/receivedorders','Backend\OrderController@receivedOrders')->name('order.received');
 	Route::get('/acceptedorders','Backend\OrderController@acceptedOrders')->name('order.accepted');
 	Route::get('/rejecteddorders','Backend\OrderController@rejectedOrders')->name('order.rejected');
+	Route::get('/{userid}/user/{id}/order','Backend\OrderController@orderDetails')->name('order.details');
+	Route::post('/changestatus','Backend\OrderController@changeAllStatus')->name('order.changeallstatus');
 
 
 });
