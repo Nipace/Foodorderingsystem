@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $order = Order::where('order_status','received')->get();
+        $order = Order::where('order_status','received')->orderBy('created_at','desc')->get();
        
         return view('backend.dashboard',compact('order'));
     }

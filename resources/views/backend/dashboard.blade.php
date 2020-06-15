@@ -47,6 +47,7 @@
                                     <th scope="col">Orderd Item</th>
                                     <th scope="col">Orderd By</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Ordered At</th>
                                     <th scope="col">Operations</th>
                                 </tr>
                             </thead>
@@ -66,6 +67,9 @@
                                  
                                     <td>
                                         {{$orders->service_type}} 
+                                    </td>
+                                    <td>
+                                        {{$orders->created_at->diffForHumans()}} 
                                     </td>
                                     <td>
                                         <form action="{{route('order.status',$orders->id)}}" method="POST">

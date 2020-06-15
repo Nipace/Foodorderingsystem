@@ -29,7 +29,7 @@ class OrderController extends Controller
 
     public function receivedOrders()
     {
-        $order = Order::where('order_status','received')->get();
+        $order = Order::where('order_status','received')->orderBy('created_at','desc')->get();
         return view('backend.order.receivedorders',compact('order'));
     }
 
