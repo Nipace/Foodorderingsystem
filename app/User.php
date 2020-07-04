@@ -44,5 +44,8 @@ class User extends Authenticatable
     {
         return $this->hasmany('App\Model\Order');
     }
+    public function identities() {
+        return $this->hasMany('App\Model\SocialIdentity');
+     }
  
 }

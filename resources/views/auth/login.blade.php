@@ -10,12 +10,12 @@
                     <div class="card-header bg-transparent pb-5">
                         <div class="text-muted text-center mt-2 mb-3"><small>{{ __('Sign in with') }}</small></div>
                         <div class="btn-wrapper text-center">
-                            <a href="#" class="btn btn-neutral btn-icon">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
-                                <span class="btn-inner--text">{{ __('Github') }}</span>
+                            <a href="{{ url('/login/facebook') }}" class="btn btn-neutral btn-icon">
+                                <span class="btn-inner--icon"><img src="https://img.icons8.com/ultraviolet/40/000000/facebook-new.png"/></span>
+                                <span class="btn-inner--text">{{ __('Facebook') }}</span>
                             </a>
-                            <a href="#" class="btn btn-neutral btn-icon">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
+                            <a href="{{ url('/login/facebook') }}" class="btn btn-neutral btn-icon">
+                                <span class="btn-inner--icon"><img src="https://img.icons8.com/color/48/000000/google-logo.png"/></span>
                                 <span class="btn-inner--text">{{ __('Google') }}</span>
                             </a>
                         </div>
